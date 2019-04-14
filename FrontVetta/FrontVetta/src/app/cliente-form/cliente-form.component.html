@@ -1,0 +1,83 @@
+<!-- Form de Cadastro dos Produtos-->
+<div class="container top">
+
+  <div class="row">
+    <div class="col">
+      <form method="POST" (ngSubmit)="salvarPessoa()" [formGroup]="formulario">
+
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" checked id="ativo" formControlName="status">
+          <label class="form-check-label" for="ativo">
+            Ativo
+          </label>
+        </div>
+
+        <div class="radioTIpoPes" #radioPess>
+          <label>Tipo de Pessoa: </label> &nbsp;
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" formControlName="tipo" name="tipo" id="tipoPessoF"
+              value="FISICA">
+            <label class="form-check-label" for="tipoPessoF">Física</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" formControlName="tipo" name="tipo" id="tipoPessoJ"
+              value="JURIDICA">
+            <label class="form-check-label" for="tipoPessoJ">Juridica</label>
+          </div>
+        </div>
+
+        <div class="divNome">
+          <label>Nome: </label>
+          <input type="text" id="nome" class="form-control" formControlName="nome" placeholder="João da Silva" />
+        </div>
+
+        <div class="cgc">
+          <div class="divCPF" *ngIf="this.formulario.value.tipo === 'FISICA'">
+            <label>CPF: </label>
+            <input id="cgc" class="form-control" formControlName="cgc" type="text" minlength="11" maxlength="11"
+              placeholder="xxx.xxx.xxx-xx" />
+          </div>
+
+          <div class="divCPF" *ngIf="this.formulario.value.tipo === 'JURIDICA'">
+            <label>CNPJ: </label>
+            <input id="cgc" class="form-control" formControlName="cgc" type="text" minlength="14" maxlength="14"
+              placeholder="xx.xxx.xxx/xxx-xx" />
+          </div>
+        </div>
+
+        <div class="cep">
+          <label>CEP: </label>
+          <input id="cep" class="form-control" formControlName="cep" type="text" minlength="8" maxlength="8"
+            placeholder="xx.xxx-xxx" />
+        </div>
+
+        <div class="email">
+          <label>E-mail: </label>
+          <input id="email" class="form-control" formControlName="email" type="email" placeholder="xxxxxx@yyyyy.zzz" />
+        </div>
+
+        <div class="telefone">
+
+          <label>DDD: </label>
+          <input id="ddd" class=" form-control col-md-3" formControlName="ddd" type="number" placeholder="XX" maxlength="2" />
+
+          <label>Numero: </label>
+          <input id="numeroTel" class="form-control col-md-5" formControlName="numeroTel" type="number"
+            placeholder="xxxxxxxxxx" />
+
+        </div>
+
+
+
+
+        <br>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+<div>
+  LISTA DE PESSOAS
+</div>
