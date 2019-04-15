@@ -44,4 +44,12 @@ export class ListaPessoasComponent implements OnInit {
     this.buscarPessoas();
   }
 
+  deletar(id) {
+    this.pessoaService.deletar(id)
+      .subscribe((retorno: any)=> {
+        this.atualizarLista();
+        return retorno;
+      })
+  }
+
 }

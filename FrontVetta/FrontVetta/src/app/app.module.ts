@@ -8,19 +8,23 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ListaPessoasComponent } from './cliente-form/lista-pessoas/lista-pessoas.component';
 import { NgxCpfCnpjModule } from  'ngx-cpf-cnpj';
+import { routing } from './app.routes';
+import { PessoaFormComponent } from './pessoa-form/pessoa-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ClienteFormComponent,
-    ListaPessoasComponent
+    ListaPessoasComponent,
+    PessoaFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgxCpfCnpjModule
+    NgxCpfCnpjModule,
+    routing
   ],
   providers: [
     ReactiveFormsModule,

@@ -1,6 +1,6 @@
 export class Telefone {
-    private ddd: number;
-    private numero: string;
+    public ddd: number;
+    public numero: string;
 
     constructor(ddd: number, numero: string){
         this.ddd = ddd;

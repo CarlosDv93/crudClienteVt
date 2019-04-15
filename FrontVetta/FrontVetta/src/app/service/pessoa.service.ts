@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 import { Pessoa } from '../model/pessoa.model';
 import { FormGroup } from '@angular/forms';
+import { Telefone } from '../model/telefone.model';
 
 @Injectable()
 export class PessoaService {
@@ -27,4 +28,33 @@ export class PessoaService {
                 return retorno;
             })
     }
+
+    public buscarPessoasID(id:number) : Observable<Pessoa>{
+        return this.http.get(`${this.url_api}/${id}`)
+            .map((retorno: Pessoa) => {
+                return retorno;
+            })
+    }
+
+    public atualizarPessoa(pessoa: Pessoa) : Observable<HttpResponse<Pessoa>>{
+        return this.http.put(`${this.url_api}/`,  pessoa, {observe : 'response'})
+            .map((retorno: HttpResponse<Pessoa>) => {
+                return retorno;
+            })
+    }
+
+    public atualizarTelefone(id: number, telefone: Telefone) : Observable<HttpResponse<Telefone>>{
+        return this.http.put(`${this.url_api}/${id}`,  telefone, {observe : 'response'})
+            .map((retorno: HttpResponse<Telefone>) => {
+                return retorno;
+            })
+    }
+
+    public deletar(id: number): Observable<HttpResponse<Pessoa>> {
+        return this.http.delete(`${this.url_api}/${id}`,  {observe : 'response'})
+        .map((retorno: HttpResponse<Pessoa>) => {
+            return retorno;
+        })
+    }
+
 }

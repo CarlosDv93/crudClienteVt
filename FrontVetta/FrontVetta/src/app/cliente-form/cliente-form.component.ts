@@ -14,6 +14,7 @@ export class ClienteFormComponent implements OnInit {
 
   public formulario: FormGroup;
   public atualizar: Boolean = false;
+  public pessoa: Pessoa;
 
   constructor(private formBuilder: FormBuilder,
       private pessoaService: PessoaService) {

@@ -25,9 +25,9 @@
             <td> {{pessoa.tipo}}</td>
             <td> {{pessoa.status}}</td>
             <td>
-              <!--<i class="material-icons" > <a [routerLink]="['produto/editar', produto.id]" title="Editar"> mode_edit </a></i>-->
-              <!-- &nbsp;
-              <i class="material-icons"> <a [routerLink]="['produto', produto.id]" title="Vincular Promocao"> add_to_queue  </a> </i>  -->
+              <i class="material-icons" > <a [routerLink]="['pessoa/', pessoa.id]" title="Editar"> mode_edit </a></i>
+              &nbsp;
+              <i class="material-icons"> <a title="Excluir" (click)="deletar(pessoa.id)"> delete </a> </i>  
               
             </td>
           </tr>
