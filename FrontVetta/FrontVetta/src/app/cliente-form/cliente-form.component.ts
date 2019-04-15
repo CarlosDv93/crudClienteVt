@@ -26,10 +26,10 @@ export class ClienteFormComponent implements OnInit {
   public configurarFormulario() {
     this.formulario = this.formBuilder.group({
       nome: ["", [Validators.required]],
-      cep: ["", Validators.required] ,
-      email: ["", Validators.required, Validators.email],
+      cep: ["", [Validators.required, Validators.maxLength(8), Validators.minLength(8)]] ,
+      email: ["",[ Validators.required, Validators.email]],
       cgc: ["", Validators.required],
-      status: ["", Validators.required],
+      status: [""],
       tipo: ["", Validators.required],
       ddd: ["", Validators.maxLength(2)],
       numeroTel: [""]
