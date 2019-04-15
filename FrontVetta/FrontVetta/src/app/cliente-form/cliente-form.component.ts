@@ -13,6 +13,7 @@ import { Telefone } from '../model/telefone.model';
 export class ClienteFormComponent implements OnInit {
 
   public formulario: FormGroup;
+  public atualizar: Boolean = false;
 
   constructor(private formBuilder: FormBuilder,
       private pessoaService: PessoaService) {
@@ -49,6 +50,7 @@ export class ClienteFormComponent implements OnInit {
     this.pessoaService.salvaPessoa(pessoa)
       .subscribe((retorno : any) => {
         console.log(retorno);
+        this.atualizar = true;
       })
   }
 
