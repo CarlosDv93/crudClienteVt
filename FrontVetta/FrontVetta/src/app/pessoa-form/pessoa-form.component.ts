@@ -49,8 +49,8 @@ export class PessoaFormComponent implements OnInit {
 
   public configurarFormularioComDados() {
 
-    let ddd: number = this.formulario.value.ddd == 0 ? null : this.formulario.value.ddd
-    let numeroTel : number = this.formulario.value.numeroTel == 0 ? null : this.formulario.value.numeroTel
+    let ddd: number = this.pessoa.ddd == 0 ? null : this.pessoa.ddd
+    let numeroTel : number = this.pessoa.numeroTel == 0 ? null : this.pessoa.numeroTel
 
     this.formulario = this.formBuilder.group({
       nome: [this.pessoa.nome, [Validators.required]],
