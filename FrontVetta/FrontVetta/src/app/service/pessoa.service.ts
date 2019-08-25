@@ -36,8 +36,8 @@ export class PessoaService {
             })
     }
 
-    public atualizarPessoa(pessoa: Pessoa) : Observable<HttpResponse<Pessoa>>{
-        return this.http.put(`${this.url_api}/`,  pessoa, {observe : 'response'})
+    public atualizarPessoa(id:number, pessoa: Pessoa) : Observable<HttpResponse<Pessoa>>{
+        return this.http.put(`${this.url_api}/${id}`,  pessoa, {observe : 'response'})
             .map((retorno: HttpResponse<Pessoa>) => {
                 return retorno;
             })

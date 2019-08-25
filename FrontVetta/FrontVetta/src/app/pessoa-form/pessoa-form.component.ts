@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { Pessoa } from '../model/pessoa.model';
 import { Telefone } from '../model/telefone.model';
 import { HttpResponse } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-pessoa-form',
@@ -19,10 +19,16 @@ export class PessoaFormComponent implements OnInit {
   public atualizar: Boolean = false;
   public pessoa: Pessoa;
   public telefone: Telefone[];
+  public id : number;
+
+  public cpfMask = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
+  public cnpjMask = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/];
+  public cepMask = [/\d/, /\d/, '.', /\d/, /\d/ , /\d/, '-', /\d/, /\d/, /\d/];
 
   constructor(private formBuilder: FormBuilder,
     private pessoaService: PessoaService,
-    private rota: ActivatedRoute) {
+    private rota: ActivatedRoute,
+    private router : Router) {
     this.formulario = this.formBuilder.group({
       nome: new FormControl(),
       cep: new FormControl(),
@@ -31,26 +37,30 @@ export class PessoaFormComponent implements OnInit {
       status: new FormControl(),
       tipo: new FormControl(),
       ddd: new FormControl(),
-      numero: new FormControl()
+      numeroTel: new FormControl()
     });
   }
 
   ngOnInit() {
     console.log("init");
-    let id = this.rota.snapshot.params['id'];
-    this.buscaPessoaPorId(id);
+    this.id = this.rota.snapshot.params['id'];
+    this.buscaPessoaPorId(this.id);
   }
 
   public configurarFormularioComDados() {
+
+    let ddd: number = this.formulario.value.ddd == 0 ? null : this.formulario.value.ddd
+    let numeroTel : number = this.formulario.value.numeroTel == 0 ? null : this.formulario.value.numeroTel
+
     this.formulario = this.formBuilder.group({
       nome: [this.pessoa.nome, [Validators.required]],
-      cep: [this.pessoa.cep, [Validators.required, Validators.maxLength(8), Validators.minLength(8)]],
+      cep: [this.pessoa.cep, [Validators.required]],
       email: [this.pessoa.email, [Validators.required, Validators.email]],
       cgc: [this.pessoa.cgc, Validators.required],
       status: [this.pessoa.status],
       tipo: [this.pessoa.tipo, Validators.required],
-      ddd: [this.telefone[0].ddd],
-      numero: [this.telefone[0].numero]
+      ddd: [ddd],
+      numeroTel: [numeroTel]
     });
 
   }
@@ -61,7 +71,7 @@ export class PessoaFormComponent implements OnInit {
       .subscribe((retorno: any) => {
         console.log("ID: ", retorno);
         this.pessoa = retorno;
-        this.telefone.push(retorno.telefones);
+        //this.telefone.push(retorno.telefones);
         this.configurarFormularioComDados();
       })
   }
@@ -72,20 +82,16 @@ export class PessoaFormComponent implements OnInit {
 
     let pessoa: Pessoa;
     let telefone: Telefone;
-
-    pessoa = new Pessoa(this.formulario.value.nome, this.formulario.value.cep, this.formulario.value.email, this.formulario.value.cgc, this.formulario.value.status, this.formulario.value.tipo);
+    let ddd: number = this.formulario.value.ddd == 0 ? null : this.formulario.value.ddd
+    let numeroTel : number = this.formulario.value.numeroTel == 0 ? null : this.formulario.value.numeroTel
+    pessoa = new Pessoa(this.formulario.value.nome, this.formulario.value.cep, this.formulario.value.email, this.formulario.value.cgc, this.formulario.value.status, this.formulario.value.tipo, ddd, numeroTel);
     telefone = new Telefone(this.formulario.value.ddd, this.formulario.value.numeroTel);
 
-    this.pessoaService.salvaPessoa(pessoa)
+    this.pessoaService.atualizarPessoa(this.id, pessoa)
       .subscribe((retorno: HttpResponse<Pessoa>) => {
         console.log(retorno);
         this.atualizar = true;
-        if (retorno.status == 201) {
-          this.pessoaService.atualizarTelefone(retorno.body.id, telefone)
-            .subscribe((retorno: HttpResponse<Telefone>) => {
-              console.log(retorno);
-            })
-        }
+        this.router.navigate(["/"]);
       })
   }
 }

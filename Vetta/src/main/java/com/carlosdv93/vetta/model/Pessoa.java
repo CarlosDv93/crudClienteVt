@@ -1,15 +1,11 @@
 package com.carlosdv93.vetta.model;
 
 import java.io.Serializable;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.carlosdv93.vetta.utils.TipoPessoa;
@@ -31,22 +27,27 @@ public class Pessoa implements Serializable {
 	private boolean status;
 	private TipoPessoa tipo;
 	
-	@OneToMany(mappedBy="pessoa", cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity=Telefone.class)
-	private List<Telefone> telefones;
+	//@OneToMany(mappedBy="pessoa", cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity=Telefone.class)
+	//private List<Telefone> telefones;
 
+	private int ddd;
+	private long numeroTel;
 
 	public Pessoa() {
 
 	}
 
-	public Pessoa(String nome, String cep, String email, boolean status, TipoPessoa tipo, String cgc) {
+	public Pessoa(String nome, String cep, String email, boolean status, TipoPessoa tipo, String cgc, int ddd,	long numeroTel) {
 		this.nome = nome;
 		this.cep = cep;
 		this.email = email;
+		this.cgc = cgc;
 		this.status = status;
 		this.tipo = tipo;
-		this.cgc = cgc;
+		this.ddd = ddd;
+		this.numeroTel = numeroTel;
 	}
+
 
 	public Long getId() {
 		return id;
@@ -99,18 +100,36 @@ public class Pessoa implements Serializable {
 	public void setTipo(TipoPessoa tipo) {
 		this.tipo = tipo;
 	}
+	
+	
 
-	public List<Telefone> getTelefones() {
-		return telefones;
+	/*
+	 * public List<Telefone> getTelefones() { return telefones; }
+	 * 
+	 * public void setTelefones(List<Telefone> telefones) { this.telefones =
+	 * telefones; }
+	 */
+
+	public int getDdd() {
+		return ddd;
 	}
 
-	public void setTelefones(List<Telefone> telefones) {
-		this.telefones = telefones;
+	public void setDdd(int ddd) {
+		this.ddd = ddd;
+	}
+
+	public long getNumeroTel() {
+		return numeroTel;
+	}
+
+	public void setNumeroTel(long numeroTel) {
+		this.numeroTel = numeroTel;
 	}
 
 	@Override
 	public String toString() {
 		return "Pessoa: \n" + "Nome: " + getNome() + "\n" + "CEP: " + getCep() + "\n";
 	}
+
 
 }

@@ -57,6 +57,8 @@ public class PessoaController {
 			pessoa1.setCgc(pessoa.getCgc());
 			pessoa1.setEmail(pessoa.getEmail());
 			pessoa1.setStatus(pessoa.getStatus());
+			pessoa1.setNumeroTel(pessoa.getNumeroTel());
+			pessoa1.setDdd(pessoa.getDdd());
 			repository.save(pessoa1);
 			return ResponseEntity.ok(pessoa1);
 		} else {
@@ -69,7 +71,7 @@ public class PessoaController {
 	public ResponseEntity<Pessoa> vincularTelefonePessoa(@PathVariable Long id, @RequestBody Telefone telefone){
 		Pessoa pessoa1 = repository.findOne(id);
 		if(pessoa1 != null) {
-			pessoa1.setTelefones(Arrays.asList(telefone));
+			//pessoa1.setTelefones(Arrays.asList(telefone));
 			repository.save(pessoa1);
 			return ResponseEntity.ok(pessoa1);
 		} else {

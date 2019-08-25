@@ -28,54 +28,50 @@
   
           <div class="divNome">
             <label>* Nome: </label>
-            <input type="text" id="nome" class="form-control" formControlName="nome" placeholder="João da Silva" required [ngClass]="{'is-invalid': formulario.get('nome').touched && formulario.get('nome').invalid,
-            'is-valid': formulario.get('nome').touched && formulario.get('nome').valid}"/>
+            <input type="text" id="nome" class="form-control" formControlName="nome" placeholder="João da Silva" required [ngClass]="{'is-invalid': formulario.get('nome').dirty && formulario.get('nome').invalid,
+            'is-valid': formulario.get('nome').untouched && formulario.get('nome').valid}" maxlength="100"/>
           </div>
   
           <div class="cgc">
             <div class="divCPF" *ngIf="this.formulario.value.tipo === 'FISICA'">
               <label>* CPF: </label>
-              <input id="cgc" class="form-control" nccCpfCnpjMask formControlName="cgc" type="text" minlength="11" maxlength="11"
-                placeholder="xxx.xxx.xxx-xx" required [ngClass]="{'is-invalid': formulario.get('cgc').touched && formulario.get('cgc').invalid,
-                'is-valid': formulario.get('cgc').touched && formulario.get('cgc').valid}" />
+              <input id="cgc" class="form-control" [textMask]="{mask: cpfMask}" formControlName="cgc" type="text"
+                placeholder="xxx.xxx.xxx-xx" required [ngClass]="{'is-invalid': formulario.get('cgc').dirty && formulario.get('cgc').invalid,
+                'is-valid': formulario.get('cgc').untouched && formulario.get('cgc').valid}" />
             </div>
   
             <div class="divCPF" *ngIf="this.formulario.value.tipo === 'JURIDICA'">
               <label>* CNPJ: </label>
-              <input id="cgc" class="form-control" nccCpfCnpjMask formControlName="cgc" type="text" minlength="14" maxlength="14"
-                placeholder="xx.xxx.xxx/xxx-xx" required [ngClass]="{'is-invalid': formulario.get('cgc').touched && formulario.get('cgc').invalid,
-                'is-valid': formulario.get('cgc').touched && formulario.get('cgc').valid}"/>
+              <input id="cgc" class="form-control" [textMask]="{mask: cnpjMask}" formControlName="cgc" type="text"
+                placeholder="xx.xxx.xxx/xxx-xx" required [ngClass]="{'is-invalid': formulario.get('cgc').dirty && formulario.get('cgc').invalid,
+                'is-valid': formulario.get('cgc').untouched && formulario.get('cgc').valid}" />
             </div>
           </div>
   
           <div class="cep">
             <label>* CEP: </label>
-            <input id="cep" class="form-control" formControlName="cep" type="text" minlength="8" maxlength="8"
-              placeholder="xx.xxx-xxx" required [ngClass]="{'is-invalid': formulario.get('cep').touched && formulario.get('cep').invalid,
-              'is-valid': formulario.get('cep').touched && formulario.get('cep').valid}"/>
+            <input id="cep" class="form-control" formControlName="cep" type="text" [textMask]="{mask: cepMask}"
+              placeholder="xx.xxx-xxx" required [ngClass]="{'is-invalid': formulario.get('cep').dirty && formulario.get('cep').invalid,
+              'is-valid': formulario.get('cep').untouched && formulario.get('cep').valid}"/>
           </div>
   
           <div class="email">
             <label>* E-mail: </label>
-            <input id="email" class="form-control" email required formControlName="email" type="email" placeholder="xxxxxx@yyyyy.zzz" [ngClass]="{'is-invalid': formulario.get('email').touched && formulario.get('email').invalid,
-            'is-valid': formulario.get('email').touched && formulario.get('email').valid}"/>
+            <input id="email" class="form-control" email required formControlName="email" type="email" placeholder="xxxxxx@yyyyy.zzz" [ngClass]="{'is-invalid': formulario.get('email').dirty && formulario.get('email').invalid,
+            'is-valid': formulario.get('email').untouched && formulario.get('email').valid}"/>
           </div>
   
-          <div class="telefone" *ngIf="telefone[0] != null">
+          <div class="telefone">
   
             <label>DDD: </label>
-            <input id="ddd" class=" form-control col-md-3" formControlName="ddd" type="number" placeholder="XX" maxlength="2" [ngClass]="{'is-invalid': formulario.get('ddd').touched && formulario.get('ddd').invalid,
+            <input id="ddd" class=" form-control col-md-3" formControlName="ddd" type="number" placeholder="XX" maxlength="2" [ngClass]="{'is-invalid': formulario.get('ddd').dirty && formulario.get('ddd').invalid,
             'is-valid': formulario.get('ddd').touched && formulario.get('ddd').valid}" />
   
             <label>Numero: </label>
             <input id="numeroTel" class="form-control col-md-5" formControlName="numeroTel" type="number"
               placeholder="xxxxxxxxxx" />
   
-          </div>
-  
-  
-  
-  
+          </div> 
           <br>
           <button type="submit" class="btn btn-primary" [disabled]="formulario.invalid">Atualizar</button>
         </form>
