@@ -1,19 +1,19 @@
 package com.carlosdv93.vetta.controllers;
 
 import java.net.URI;
-import java.util.Arrays;
+import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.ResponseEntity.HeadersBuilder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -59,6 +59,7 @@ public class PessoaController {
 			pessoa1.setStatus(pessoa.getStatus());
 			pessoa1.setNumeroTel(pessoa.getNumeroTel());
 			pessoa1.setDdd(pessoa.getDdd());
+			pessoa1.setNomeDaEmpresa(pessoa.getNomeDaEmpresa());
 			repository.save(pessoa1);
 			return ResponseEntity.ok(pessoa1);
 		} else {
@@ -83,6 +84,11 @@ public class PessoaController {
 	public ResponseEntity<Object> deletarPessoa(@PathVariable Long id){
 		repository.delete(id);
 		return ResponseEntity.ok(null);
-		
+	}
+	
+	@RequestMapping(path="/buscar", method=RequestMethod.GET)
+	public ResponseEntity<List<Pessoa>> getByName(@RequestParam String nome){
+		List<Pessoa> pessoas = repository.findByNomeContainingIgnoreCase(nome);
+		return ResponseEntity.ok(pessoas);
 	}
 }

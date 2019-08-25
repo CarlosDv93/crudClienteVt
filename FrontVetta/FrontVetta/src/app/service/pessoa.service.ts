@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map';
 import { Pessoa } from '../model/pessoa.model';
 import { FormGroup } from '@angular/forms';
 import { Telefone } from '../model/telefone.model';
+import 'rxjs/add/operator/retry';
 
 @Injectable()
 export class PessoaService {
@@ -34,6 +35,14 @@ export class PessoaService {
             .map((retorno: Pessoa) => {
                 return retorno;
             })
+    }
+
+    public buscarPessoasNome(nome: string) : Observable<Pessoa[]>{
+        return this.http.get(`${this.url_api}/buscar?nome=${nome}`)
+        .retry(10)
+        .map((retorno: Pessoa[]) => {
+            return retorno;
+        })
     }
 
     public atualizarPessoa(id:number, pessoa: Pessoa) : Observable<HttpResponse<Pessoa>>{

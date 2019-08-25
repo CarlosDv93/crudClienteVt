@@ -32,12 +32,14 @@ public class Pessoa implements Serializable {
 
 	private int ddd;
 	private long numeroTel;
+	
+	private String nomeDaEmpresa;
 
 	public Pessoa() {
 
 	}
 
-	public Pessoa(String nome, String cep, String email, boolean status, TipoPessoa tipo, String cgc, int ddd,	long numeroTel) {
+	public Pessoa(String nome, String cep, String email, boolean status, TipoPessoa tipo, String cgc, int ddd,	long numeroTel, String nomeDaEmpresa) {
 		this.nome = nome;
 		this.cep = cep;
 		this.email = email;
@@ -46,6 +48,7 @@ public class Pessoa implements Serializable {
 		this.tipo = tipo;
 		this.ddd = ddd;
 		this.numeroTel = numeroTel;
+		this.nomeDaEmpresa = nomeDaEmpresa;
 	}
 
 
@@ -124,6 +127,14 @@ public class Pessoa implements Serializable {
 
 	public void setNumeroTel(long numeroTel) {
 		this.numeroTel = numeroTel;
+	}
+	
+	public String getNomeDaEmpresa() {
+		return nomeDaEmpresa;
+	}
+
+	public void setNomeDaEmpresa(String nomeDaEmpresa) {
+		this.nomeDaEmpresa = nomeDaEmpresa;
 	}
 
 	@Override

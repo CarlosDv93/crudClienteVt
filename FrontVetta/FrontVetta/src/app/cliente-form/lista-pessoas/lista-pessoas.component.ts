@@ -2,6 +2,14 @@ import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { Pessoa } from 'src/app/model/pessoa.model';
 import { HttpClient } from '@angular/common/http';
 import { PessoaService } from 'src/app/service/pessoa.service';
+import { Subject, Observable } from 'rxjs';
+
+
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/debounceTime'; //Sem também funcionou
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/observable/empty';
 
 @Component({
   selector: 'app-lista-pessoas',
@@ -16,6 +24,8 @@ export class ListaPessoasComponent implements OnInit {
   public cpfMask = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
   public cnpjMask = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/];
   public cepMask = [/\d/, /\d/, /\d/, /\d/ , /\d/, '-', /\d/, /\d/, /\d/];
+
+  private subjectPesquisa: Subject<string> = new Subject<string>();
 
   constructor(private http : HttpClient,
     private pessoaService: PessoaService) { 
@@ -55,5 +65,13 @@ export class ListaPessoasComponent implements OnInit {
       })
   }
 
+  buscarPessoasNome(nome : string) {
 
+    this.pessoaService.buscarPessoasNome(nome)
+      .debounceTime(1000)
+      .distinctUntilChanged()
+      .subscribe((pessoas : Pessoa[]) => {
+        this.pessoas = pessoas;
+      })
+  }
 }
