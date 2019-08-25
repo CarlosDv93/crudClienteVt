@@ -10,6 +10,7 @@ import { ListaPessoasComponent } from './cliente-form/lista-pessoas/lista-pessoa
 import { NgxCpfCnpjModule } from  'ngx-cpf-cnpj';
 import { routing } from './app.routes';
 import { PessoaFormComponent } from './pessoa-form/pessoa-form.component';
+import { TextMaskModule } from 'angular2-text-mask';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PessoaFormComponent } from './pessoa-form/pessoa-form.component';
     ReactiveFormsModule,
     HttpClientModule,
     NgxCpfCnpjModule,
-    routing
+    routing,
+    TextMaskModule
   ],
   providers: [
     ReactiveFormsModule,

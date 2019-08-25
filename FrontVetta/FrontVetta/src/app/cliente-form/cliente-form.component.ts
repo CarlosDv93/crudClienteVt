@@ -15,6 +15,9 @@ export class ClienteFormComponent implements OnInit {
   public formulario: FormGroup;
   public atualizar: Boolean = false;
   public pessoa: Pessoa;
+  public cpfMask = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
+  public cnpjMask = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/];
+  public cepMask = [/\d/, /\d/, '.', /\d/, /\d/ , /\d/, '-', /\d/, /\d/, /\d/];
 
   constructor(private formBuilder: FormBuilder,
       private pessoaService: PessoaService) {
@@ -28,10 +31,10 @@ export class ClienteFormComponent implements OnInit {
   public configurarFormulario() {
     this.formulario = this.formBuilder.group({
       nome: ["", [Validators.required]],
-      cep: ["", [Validators.required, Validators.maxLength(8), Validators.minLength(8)]] ,
+      cep: ["", [Validators.required]],
       email: ["",[ Validators.required, Validators.email]],
-      cgc: ["", Validators.required],
-      status: [""],
+      cgc: ["", [Validators.required]],
+      status: [true, Validators.required],
       tipo: ["", Validators.required],
       ddd: ["", Validators.maxLength(2)],
       numeroTel: [""]

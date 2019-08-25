@@ -35,14 +35,14 @@
         <div class="cgc">
           <div class="divCPF" *ngIf="this.formulario.value.tipo === 'FISICA'">
             <label>* CPF: </label>
-            <input id="cgc" class="form-control" nccCpfCnpjMask formControlName="cgc" type="text" minlength="11" maxlength="11"
+            <input id="cgc" class="form-control" [textMask]="{mask: cpfMask}"  formControlName="cgc" type="text" 
               placeholder="xxx.xxx.xxx-xx" required [ngClass]="{'is-invalid': formulario.get('cgc').touched && formulario.get('cgc').invalid,
               'is-valid': formulario.get('cgc').touched && formulario.get('cgc').valid}" />
           </div>
 
           <div class="divCPF" *ngIf="this.formulario.value.tipo === 'JURIDICA'">
             <label>* CNPJ: </label>
-            <input id="cgc" class="form-control" nccCpfCnpjMask formControlName="cgc" type="text" minlength="14" maxlength="14"
+            <input id="cgc" class="form-control" [textMask]="{mask: cnpjMask}" formControlName="cgc" type="text"
               placeholder="xx.xxx.xxx/xxx-xx" required [ngClass]="{'is-invalid': formulario.get('cgc').touched && formulario.get('cgc').invalid,
               'is-valid': formulario.get('cgc').touched && formulario.get('cgc').valid}"/>
           </div>
@@ -50,9 +50,9 @@
 
         <div class="cep">
           <label>* CEP: </label>
-          <input id="cep" class="form-control" formControlName="cep" type="text" minlength="8" maxlength="8"
+          <input id="cep" class="form-control" formControlName="cep" type="text" 
             placeholder="xx.xxx-xxx" required [ngClass]="{'is-invalid': formulario.get('cep').touched && formulario.get('cep').invalid,
-            'is-valid': formulario.get('cep').touched && formulario.get('cep').valid}"/>
+            'is-valid': formulario.get('cep').touched && formulario.get('cep').valid}" [textMask]="{mask: cepMask}"/>
         </div>
 
         <div class="email">
@@ -68,14 +68,10 @@
           'is-valid': formulario.get('ddd').touched && formulario.get('ddd').valid}" />
 
           <label>Numero: </label>
-          <input id="numeroTel" class="form-control col-md-5" formControlName="numeroTel" type="number"
+          <input id="numeroTel" class="form-control col-md-5" formControlName="numeroTel" type="number" 
             placeholder="xxxxxxxxxx" />
 
         </div>
-
-
-
-
         <br>
         <button type="submit" class="btn btn-primary" [disabled]="formulario.invalid">Salvar</button>
       </form>

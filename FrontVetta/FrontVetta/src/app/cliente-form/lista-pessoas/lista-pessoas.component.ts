@@ -13,6 +13,9 @@ export class ListaPessoasComponent implements OnInit {
 
   public pessoas : Pessoa[];
   @Input() atualizar : Boolean;
+  public cpfMask = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
+  public cnpjMask = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/];
+  public cepMask = [/\d/, /\d/, /\d/, /\d/ , /\d/, '-', /\d/, /\d/, /\d/];
 
   constructor(private http : HttpClient,
     private pessoaService: PessoaService) { 
