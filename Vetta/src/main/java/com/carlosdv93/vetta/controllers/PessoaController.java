@@ -59,7 +59,7 @@ public class PessoaController {
 			pessoa1.setStatus(pessoa.getStatus());
 			pessoa1.setNumeroTel(pessoa.getNumeroTel());
 			pessoa1.setDdd(pessoa.getDdd());
-			pessoa1.setNomeDaEmpresa(pessoa.getNomeDaEmpresa());
+			pessoa1.setNomeEmpresa(pessoa.getNomeEmpresa());
 			repository.save(pessoa1);
 			return ResponseEntity.ok(pessoa1);
 		} else {

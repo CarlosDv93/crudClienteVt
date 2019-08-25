@@ -27,16 +27,16 @@ private static final Logger log = LoggerFactory.getLogger(VettaApplication.class
 	@Bean
 	public boolean instatiateDatabase() {
 		
-		Pessoa pess1 = new Pessoa("Carlos David", "35.681-108", "carlosdv09@gmail.com", true, TipoPessoa.FISICA, "376.577.730-73", 37, 3242-5926, "Teste");
+		Pessoa pess1 = new Pessoa("Carlos David", "35.681-108", "carlosdv09@gmail.com", true, TipoPessoa.FISICA, "376.577.730-73", 37, 32425926, "Teste1");
 		pessoaRP.save(pess1);
 		
-		Pessoa pess2 = new Pessoa("Teste", "35.681-108", "teste@gmail.com", true, TipoPessoa.FISICA, "145.043.960-84", 37, 3242-5926, "Teste");
+		Pessoa pess2 = new Pessoa("Teste", "35.681-108", "teste@gmail.com", true, TipoPessoa.FISICA, "145.043.960-84", 37, 32425926, "Teste2");
 		pessoaRP.save(pess2);
 		
-		Pessoa pess3 = new Pessoa("Teste123", "35.681-108", "teste123@gmail.com", true, TipoPessoa.FISICA, "088.230.850-55", 37, 3242-5926, "Teste");
+		Pessoa pess3 = new Pessoa("Teste123", "35.681-108", "teste123@gmail.com", true, TipoPessoa.FISICA, "088.230.850-55", 37, 32425926, "Teste3");
 		pessoaRP.save(pess3);
 		
-		Pessoa pess4 = new Pessoa("Teste123", "35.681-108", "teste123@gmail.com", true, TipoPessoa.JURIDICA, "02.634.834/0001-84", 37, 3242-5926, "Teste");
+		Pessoa pess4 = new Pessoa("Teste123", "35.681-108", "teste123@gmail.com", true, TipoPessoa.JURIDICA, "02.634.834/0001-84", 37, 32425926, "Teste4");
 		pessoaRP.save(pess4);
 		
 		/*

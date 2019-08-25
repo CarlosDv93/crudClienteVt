@@ -48,6 +48,13 @@
             </div>
           </div>
   
+          <div class="nomeEmpresa">
+            <label>* Nome Empresa: </label>
+            <input id="nomeEmpresa" class="form-control" formControlName="nomeEmpresa" type="text" maxlength="100"
+              placeholder="Google" required [ngClass]="{'is-invalid': formulario.get('nomeEmpresa').dirty && formulario.get('nomeEmpresa').invalid,
+              'is-valid': formulario.get('nomeEmpresa').untouched && formulario.get('nomeEmpresa').valid}"/>
+          </div>
+
           <div class="cep">
             <label>* CEP: </label>
             <input id="cep" class="form-control" formControlName="cep" type="text" [textMask]="{mask: cepMask}"
@@ -65,7 +72,7 @@
   
             <label>DDD: </label>
             <input id="ddd" class=" form-control col-md-3" formControlName="ddd" type="number" placeholder="XX" maxlength="2" [ngClass]="{'is-invalid': formulario.get('ddd').dirty && formulario.get('ddd').invalid,
-            'is-valid': formulario.get('ddd').touched && formulario.get('ddd').valid}" />
+            'is-valid': formulario.get('ddd').untouched && formulario.get('ddd').valid}" />
   
             <label>Numero: </label>
             <input id="numeroTel" class="form-control col-md-5" formControlName="numeroTel" type="number"

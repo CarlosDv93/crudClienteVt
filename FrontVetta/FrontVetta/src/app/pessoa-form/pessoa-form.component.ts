@@ -60,7 +60,8 @@ export class PessoaFormComponent implements OnInit {
       status: [this.pessoa.status],
       tipo: [this.pessoa.tipo, Validators.required],
       ddd: [ddd],
-      numeroTel: [numeroTel]
+      numeroTel: [numeroTel],
+      nomeEmpresa: [this.pessoa.nomeEmpresa, [Validators.required, Validators.maxLength(100)]]
     });
 
   }
@@ -84,7 +85,7 @@ export class PessoaFormComponent implements OnInit {
     let telefone: Telefone;
     let ddd: number = this.formulario.value.ddd == 0 ? null : this.formulario.value.ddd
     let numeroTel : number = this.formulario.value.numeroTel == 0 ? null : this.formulario.value.numeroTel
-    pessoa = new Pessoa(this.formulario.value.nome, this.formulario.value.cep, this.formulario.value.email, this.formulario.value.cgc, this.formulario.value.status, this.formulario.value.tipo, ddd, numeroTel);
+    pessoa = new Pessoa(this.formulario.value.nome, this.formulario.value.cep, this.formulario.value.email, this.formulario.value.cgc, this.formulario.value.status, this.formulario.value.tipo, ddd, numeroTel, this.formulario.value.nomeEmpresa);
     telefone = new Telefone(this.formulario.value.ddd, this.formulario.value.numeroTel);
 
     this.pessoaService.atualizarPessoa(this.id, pessoa)

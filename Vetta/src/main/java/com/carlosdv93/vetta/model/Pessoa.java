@@ -33,13 +33,13 @@ public class Pessoa implements Serializable {
 	private int ddd;
 	private long numeroTel;
 	
-	private String nomeDaEmpresa;
+	private String nomeEmpresa;
 
 	public Pessoa() {
 
 	}
 
-	public Pessoa(String nome, String cep, String email, boolean status, TipoPessoa tipo, String cgc, int ddd,	long numeroTel, String nomeDaEmpresa) {
+	public Pessoa(String nome, String cep, String email, boolean status, TipoPessoa tipo, String cgc, int ddd,	long numeroTel, String nomeEmpresa) {
 		this.nome = nome;
 		this.cep = cep;
 		this.email = email;
@@ -48,7 +48,7 @@ public class Pessoa implements Serializable {
 		this.tipo = tipo;
 		this.ddd = ddd;
 		this.numeroTel = numeroTel;
-		this.nomeDaEmpresa = nomeDaEmpresa;
+		this.nomeEmpresa = nomeEmpresa;
 	}
 
 
@@ -129,12 +129,12 @@ public class Pessoa implements Serializable {
 		this.numeroTel = numeroTel;
 	}
 	
-	public String getNomeDaEmpresa() {
-		return nomeDaEmpresa;
+	public String getNomeEmpresa() {
+		return nomeEmpresa;
 	}
 
-	public void setNomeDaEmpresa(String nomeDaEmpresa) {
-		this.nomeDaEmpresa = nomeDaEmpresa;
+	public void setNomeEmpresa(String nomeEmpresa) {
+		this.nomeEmpresa = nomeEmpresa;
 	}
 
 	@Override

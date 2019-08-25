@@ -28,7 +28,8 @@
 
         <div class="divNome">
           <label>* Nome: </label>
-          <input type="text" id="nome" class="form-control" formControlName="nome" placeholder="João da Silva" required [ngClass]="{'is-invalid': formulario.get('nome').touched && formulario.get('nome').invalid,
+          <input type="text" id="nome" class="form-control" formControlName="nome" placeholder="João da Silva" required maxlength="100"
+          [ngClass]="{'is-invalid': formulario.get('nome').touched && formulario.get('nome').invalid,
           'is-valid': formulario.get('nome').touched && formulario.get('nome').valid}"/>
         </div>
 
@@ -46,6 +47,13 @@
               placeholder="xx.xxx.xxx/xxx-xx" required [ngClass]="{'is-invalid': formulario.get('cgc').touched && formulario.get('cgc').invalid,
               'is-valid': formulario.get('cgc').touched && formulario.get('cgc').valid}"/>
           </div>
+        </div>
+
+        <div class="nomeEmpresa">
+          <label>* Nome Empresa: </label>
+          <input id="nomeEmpresa" class="form-control" formControlName="nomeEmpresa" type="text" maxlength="100"
+            placeholder="Google" required [ngClass]="{'is-invalid': formulario.get('nomeEmpresa').touched && formulario.get('nomeEmpresa').invalid,
+            'is-valid': formulario.get('nomeEmpresa').touched && formulario.get('nomeEmpresa').valid}"/>
         </div>
 
         <div class="cep">

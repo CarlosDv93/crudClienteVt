@@ -12,8 +12,9 @@ export class Pessoa {
     public tipo: TipoPessoa;
     public ddd: number;
     public numeroTel: number;
+    public nomeEmpresa: string;
     
-    constructor(nome : string, cep: string, email: string, cgc: string, status: Status, tipo: TipoPessoa, ddd: number, numeroTel: number){
+    constructor(nome : string, cep: string, email: string, cgc: string, status: Status, tipo: TipoPessoa, ddd: number, numeroTel: number, nomeEmpresa: string){
         this.nome = nome;
         this.cep = cep;
         this.email = email;
@@ -21,6 +22,7 @@ export class Pessoa {
         this.status = status;
         this.tipo = tipo;
         this.ddd = ddd;
-        this.numeroTel = numeroTel
+        this.numeroTel = numeroTel;
+        this.nomeEmpresa = nomeEmpresa;
     }
 }
